@@ -121,7 +121,11 @@ var meme = {
 	"skeptical": 101711,
 	"notime": 442575,
 	"yodawg": 101716,
-	"awkwardpenguin": 61584
+	"awkwardpenguin": 61584,
+    "firstworld": 61539,
+    "buzzeverywhere": 347390,
+    "aliens": 101470,
+    "cpfacepalm": 1509839
 };
 
 var aliases;
@@ -430,23 +434,6 @@ var commands = {
 			};
 			updateMessagebox();
 			msg.channel.sendMessage("message saved.")
-		}
-	},
-	"beam": {
-		usage: "<stream>",
-		description: "checks if the given Beam stream is online",
-		process: function(bot,msg,suffix){
-		    require("request")("https://beam.pro/api/v1/channels/"+suffix,
-		    function(err,res,body){
-		        var data = JSON.parse(body);
-		        if(data && data.online){
-		            msg.channel.sendMessage( suffix
-		                +" is online"
-		                +"\n"+data.thumbnail.url)
-		        }else{
-		            msg.channel.sendMessage( suffix+" is offline")
-		        }
-		    });
 		}
 	},
 	"urban": {
