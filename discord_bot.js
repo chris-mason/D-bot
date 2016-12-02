@@ -172,6 +172,21 @@ var commands = {
         description: "returns the user id of the sender",
         process: function(bot,msg){msg.channel.sendMessage(msg.author.id);}
     },
+    "8ball": {
+        usage: '<question>',
+        description: 'find out the truth.',
+        process: function(bot, msg, args) {
+
+        request(`https://8ball.delegator.com/magic/JSON/${msg}`, function(err, res, body) {
+        var response = JSON.parse(body);
+
+        msg.channel.sendMessage(response.magic.answer);
+
+        }).on('error', function(e) {
+            console.log('Got error: ' + e.message);
+        });
+
+    },
     "idle": {
 				usage: "[status]",
         description: "sets bot status to idle",
