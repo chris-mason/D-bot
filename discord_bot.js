@@ -849,7 +849,11 @@ function checkMessageForCommand(msg, isEdit) {
         }
 
         if (msg.author != bot.user && msg.isMentioned(bot.user)) {
-                msg.channel.sendMessage(msg.author + ", you called?");
+                var responses = ["Fuck off " + msg.author + ", you fucking prick.", msg.author + " why are you still talking?", "That was a stupid thing to say " + msg.author, "Do I look like a PA to you " + msg.author + "? Fuck off and talk to Cortana."];
+                var reply = responses[Math.floor(Math.random() * responses.length)];
+                //msg.channel.sendMessage("Fuck off " + msg.author + ", you fucking prick.");
+                msg.channel.sendMessage(reply);
+
         } else {
 
 				}
