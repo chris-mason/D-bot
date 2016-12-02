@@ -147,6 +147,19 @@ var commands = {
             });
         }
     },
+    //8ball
+    "catfact": {
+        description: 'find out about cats!',
+        process: function(bot, msg, args) {
+            var rand = Math.floor(Math.random() * 100;
+            request('http://catfacts-api.appspot.com/api/facts?number=5${rand}', function(err, res, body) {
+                var response = JSON.parse(body);
+                msg.channel.sendMessage(response.facts[0]);
+            }).on('error', function(e) {
+                console.log('Got error: ' + e.message);
+            });
+        }
+    },
     "pullanddeploy": {
         description: "bot will perform a git pull master and restart with the new code",
         process: function(bot,msg,suffix) {
