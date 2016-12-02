@@ -177,15 +177,16 @@ var commands = {
         description: 'find out the truth.',
         process: function(bot, msg, args) {
 
-        request(`https://8ball.delegator.com/magic/JSON/${msg}`, function(err, res, body) {
-        var response = JSON.parse(body);
+            request('https://8ball.delegator.com/magic/JSON/${msg}', function(err, res, body) {
+            var response = JSON.parse(body);
 
-        msg.channel.sendMessage(response.magic.answer);
+            msg.channel.sendMessage(response.magic.answer);
 
-        }).on('error', function(e) {
-            console.log('Got error: ' + e.message);
-        });
+            }).on('error', function(e) {
+                console.log('Got error: ' + e.message);
+            });
 
+        }
     },
     "idle": {
 				usage: "[status]",
@@ -664,7 +665,6 @@ var commands = {
 					timestr += secs + " seconds ";
 				}
 				msg.channel.sendMessage("**Uptime**: " + timestr);
-			}
 			}
 };
 
