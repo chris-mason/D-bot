@@ -134,21 +134,49 @@ var meme = {
 var aliases;
 var messagebox;
 
+var request = require('request');
+
 var commands = {
+    //8ball
     "8ball": {
         usage: '<question>',
         description: 'find out the truth.',
         process: function(bot, msg, args) {
-
             request('https://8ball.delegator.com/magic/JSON/${msg}', function(err, res, body) {
-            var response = JSON.parse(body);
-
-            msg.channel.sendMessage(response.magic.answer);
-
+                var response = JSON.parse(body);
+                msg.channel.sendMessage(response.magic.answer);
             }).on('error', function(e) {
                 console.log('Got error: ' + e.message);
             });
-
+        }
+    },
+    // Pokedex search
+    "pokedex": {
+        usage: "<National Dex number>",
+        process: function(bot, msg, suffix) {
+            if(suffix && !isNaN(suffix)) {
+                unirest.get("http://pokeapi.co/api/v2/pokemon-species/" + suffix)
+                .header("Accept", "application/json")
+                .end(function(response) {
+                    if(response.status==200) {
+                        var data = response.body;
+                        var info = "__Pokemon #" + data.id + ": " + data.names[0].name + "__\n";
+                        if(data.gender_rate==-1) {
+                            info += "**Genderless**\n";
+                        } else {
+                            info += "**Gender Ratio:** " + (data.gender_rate / 8) * 100 + "% female and " + ((8 - data.gender_rate) / 8) * 100 + "% male\n";
+                        }
+                        info += "**Capture Rate:** " + data.capture_rate + " of 255 (higher is better)\n**Base Happiness:** " + data.base_happiness + "\n**Base Steps to Hatch:** " + (data.hatch_counter * 255 + 1) + "\n**Growth Rate:** " + data.growth_rate.name + "\n**Color/Shape:** " + data.color.name + " " + data.shape.name + "\n**Habitat:** " + (data.habitat ? data.habitat.name : "None") + "\n**First Seen in Generation:** " + data.generation.name.substring(data.generation.name.indexOf("-")+1).toUpperCase();
+                        bot.sendMessage(msg.channel, info);
+                    } else {
+                        logMsg(Date.now(), "ERROR", msg.channel.server.id, msg.channel.id, "Failed to fetch pokedex data");
+                        bot.sendMessage(msg.channel, "Something happened...RIP in pieces.")
+                    }
+                });
+            } else {
+                logMsg(Date.now(), "WARN", msg.channel.server.id, msg.channel.id, "User did not provide valid pokedex number");
+                bot.sendMessage(msg.channel, msg.author + " :speak_no_evil: :writing_hand: :1234:")
+            }
         }
     },
 	"aliases": {
