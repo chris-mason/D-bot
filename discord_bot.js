@@ -151,7 +151,7 @@ var commands = {
     "catfact": {
         description: 'find out about cats!',
         process: function(bot, msg, args) {
-            var rand = Math.floor(Math.random() * 100;
+            var rand = Math.floor(Math.random() * 100);
             request('http://catfacts-api.appspot.com/api/facts?number=5${rand}', function(err, res, body) {
                 var response = JSON.parse(body);
                 msg.channel.sendMessage(response.facts[0]);
