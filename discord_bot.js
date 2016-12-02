@@ -179,6 +179,43 @@ var commands = {
             }
         }
     },
+    "pullanddeploy": {
+        description: "bot will perform a git pull master and restart with the new code",
+        process: function(bot,msg,suffix) {
+            msg.channel.sendMessage("fetching updates...").then(function(sentMsg){
+                console.log("updating...");
+                var spawn = require('child_process').spawn;
+                var log = function(err,stdout,stderr){
+                    if(stdout){console.log(stdout);}
+                    if(stderr){console.log(stderr);}
+                };
+                var fetch = spawn('git', ['fetch']);
+                fetch.stdout.on('data',function(data){
+                    console.log(data.toString());
+                });
+                fetch.on("close",function(code){
+                    var reset = spawn('git', ['reset','--hard','origin/master']);
+                    reset.stdout.on('data',function(data){
+                        console.log(data.toString());
+                    });
+                    reset.on("close",function(code){
+                        var npm = spawn('npm', ['install']);
+                        npm.stdout.on('data',function(data){
+                            console.log(data.toString());
+                        });
+                        npm.on("close",function(code){
+                            console.log("goodbye");
+                            sentMsg.edit("brb!").then(function(){
+                                bot.destroy().then(function(){
+                                    process.exit();
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        }
+    },
 	"aliases": {
 		description: "lists all recorded aliases",
 		process: function(bot, msg, suffix) {
@@ -764,7 +801,11 @@ function checkMessageForCommand(msg, isEdit) {
         }
 
         if (msg.author != bot.user && msg.isMentioned(bot.user)) {
-                var responses = ["Fuck off " + msg.author + ", you fucking prick.", msg.author + " why are you still talking?", "That was a stupid thing to say " + msg.author, "Do I look like a PA to you " + msg.author + "? Fuck off and talk to Cortana."];
+                var responses = ["Fuck off " + msg.author + ", you fucking prick.", 
+                                 msg.author + " why are you still talking?", 
+                                 "That was a stupid thing to say " + msg.author, 
+                                 "Do I look like a PA to you " + msg.author + "? Fuck off and talk to Cortana.",
+                                 msg.author + " do you know what it's like being one of the most hated people in the world? Do you know how hard my life has been for the last eighteen years? Heckled by children in the street, death threats sent to my door... every single day. I was only trying to help. That jumped up little prick for the forest, he... My therapist tells me I should try to forget about him. I'll forget him when he's dead. Breath of the Wild? Breath of my arse."];
                 var reply = responses[Math.floor(Math.random() * responses.length)];
                 //msg.channel.sendMessage("Fuck off " + msg.author + ", you fucking prick.");
                 msg.channel.sendMessage(reply);
