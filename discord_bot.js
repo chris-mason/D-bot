@@ -805,7 +805,7 @@ function checkMessageForCommand(msg, isEdit) {
                                  msg.author + " why are you still talking?", 
                                  "That was a stupid thing to say " + msg.author, 
                                  "Do I look like a PA to you " + msg.author + "? Fuck off and talk to Cortana.",
-                                 msg.author + " do you know what it's like being one of the most hated people in the world? Do you know how hard my life has been for the last eighteen years? Heckled by children in the street, death threats sent to my door... every single day. I was only trying to help. That jumped up little prick for the forest, he... My therapist tells me I should try to forget about him. I'll forget him when he's dead. Breath of the Wild? Breath of my arse."];
+                                 msg.author + " do you know what it's like being one of the most hated people in the world? Do you know how hard my life has been for the last eighteen years? Heckled by children in the street, death threats sent to my door... every single day. I was only trying to help. That jumped up little prick from the forest, he... My therapist tells me I should try to forget about him. I'll forget him when he's dead. Breath of the Wild? Breath of my arse."];
                 var reply = responses[Math.floor(Math.random() * responses.length)];
                 //msg.channel.sendMessage("Fuck off " + msg.author + ", you fucking prick.");
                 msg.channel.sendMessage(reply);
