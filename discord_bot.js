@@ -160,7 +160,7 @@ var commands = {
                           'A lie told often enough becomes the truth.'
                           'The most important thing when ill is to never lose heart',
                           'Can a nation be free if it oppresses other nations? It cannot.']
-            msg.channel.sendMessage(quote[Math.floor(Math.random() * quote.length)]);
+            msg.channel.sendMessage('Who said it: Conan the Barbarian or Vladimir Lenin? ``` "' + quote[Math.floor(Math.random() * quote.length)]) + '" ```';
         }
     },
     //8ball
