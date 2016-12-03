@@ -157,7 +157,7 @@ var commands = {
                           'No one, not even you, will remember if we were good men or bad. Why we fought, or why we died.',
                           'A revolution is impossible without a revolutionary situation; furthermore, not every revolutionary situation leads to revolution.',
                           'To rely upon conviction, devotion, and other excellent spiritual qualities; that is not to be taken seriously.',
-                          'A lie told often enough becomes the truth.'
+                          'A lie told often enough becomes the truth.',
                           'The most important thing when ill is to never lose heart',
                           'Can a nation be free if it oppresses other nations? It cannot.']
             msg.channel.sendMessage('Who said it: Conan the Barbarian or Vladimir Lenin? ``` "' + quote[Math.floor(Math.random() * quote.length)]) + '" ```';
