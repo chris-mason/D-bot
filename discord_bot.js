@@ -148,6 +148,22 @@ var commands = {
         }
     },
     //8ball
+    "conanorlenin": {
+        usage: '<question>',
+        description: 'Who said it: Conan the Barbarian or Vladimir Lenin?',
+        process: function(bot, msg, args) {
+            var quote = ['For us, there is no spring. Just the wind that smells fresh before the storm.',
+                          'crush your enemies, to see them driven before you, and to hear the lamentations of their women.',
+                          'No one, not even you, will remember if we were good men or bad. Why we fought, or why we died.',
+                          'A revolution is impossible without a revolutionary situation; furthermore, not every revolutionary situation leads to revolution.',
+                          'To rely upon conviction, devotion, and other excellent spiritual qualities; that is not to be taken seriously.',
+                          'A lie told often enough becomes the truth.'
+                          'The most important thing when ill is to never lose heart',
+                          'Can a nation be free if it oppresses other nations? It cannot.']
+            msg.channel.sendMessage(quote[Math.floor(Math.random() * quote.length)]);
+        }
+    },
+    //8ball
     "catfact": {
         description: 'find out about cats!',
         process: function(bot, msg, args) {
