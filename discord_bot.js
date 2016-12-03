@@ -147,7 +147,7 @@ var commands = {
             });
         }
     },
-    //8ball
+    //Conan or Lenin
     "conanorlenin": {
         description: 'Who said it: Conan the Barbarian or Vladimir Lenin?',
         process: function(bot, msg, args) {
@@ -159,7 +159,7 @@ var commands = {
                           'A lie told often enough becomes the truth.',
                           'The most important thing when ill is to never lose heart',
                           'Can a nation be free if it oppresses other nations? It cannot.']
-            msg.channel.sendMessage('Who said it: Conan the Barbarian or Vladimir Lenin? ``` "' + quote[Math.floor(Math.random() * quote.length)]) + '" ```';
+            msg.channel.sendMessage('``` "' + quote[Math.floor(Math.random() * quote.length)]) + '" ``` Who said it: Conan the Barbarian or Vladimir Lenin?';
         }
     },
     //8ball
