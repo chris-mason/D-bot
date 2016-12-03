@@ -149,7 +149,6 @@ var commands = {
     },
     //8ball
     "conanorlenin": {
-        usage: '<question>',
         description: 'Who said it: Conan the Barbarian or Vladimir Lenin?',
         process: function(bot, msg, args) {
             var quote = ['For us, there is no spring. Just the wind that smells fresh before the storm.',
