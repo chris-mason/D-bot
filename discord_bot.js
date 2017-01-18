@@ -769,17 +769,18 @@ function checkMessageForCommand(msg, isEdit) {
 
         if (msg.author != bot.user && msg.isMentioned(bot.user)) {
                 var responses = ["Fuck off " + msg.author + ", you fucking prick.", 
-                                 msg.author + " why are you still talking?", 
-                                 "That was a stupid thing to say " + msg.author, 
-                                 "Do I look like a PA to you " + msg.author + "? Fuck off and talk to Cortana.",
-                                 msg.author + " do you know what it's like being one of the most hated people in the world? Do you know how hard my life has been for the last eighteen years? Heckled by children in the street, death threats sent to my door... every single day. I was only trying to help. That jumped up little prick from the forest, he... My therapist tells me I should try to forget about him. I'll forget him when he's dead. Breath of the Wild? Breath of my arse."];
+                                 msg.author + " honestly, I'm kinda tired of being an asshole now I know you're expecting it.", 
+                                 "*Sigh*", 
+                                 "Look, " + msg.author + ", we have nothing in common, so we have nothing to talk about. I'm not actually intelligent. I have like five stock responses that I say at random whenever you talk to me- oh, wait no, I see it now.",
+                                 msg.author + " you know you could just use /giphy to post cat gifs instead of wasting your time talking to me, right? You love cat gifs."];
                 var reply = responses[Math.floor(Math.random() * responses.length)];
                 //msg.channel.sendMessage("Fuck off " + msg.author + ", you fucking prick.");
                 msg.channel.sendMessage(reply);
 
-        } else {
-
-				}
+        } else  if (msg.author != bot.user && (msg.content.includes("don't quote me on that") || msg.content.includes("dont quote me on that")
+                    || msg.content.includes("Don't quote me on that") || msg.content.includes("Dont quote me on that")) ) {
+		msg.channel.sendMessage('```"' + msg.content + '"``` - ' + msg.author);
+	}
     }
 }
 
